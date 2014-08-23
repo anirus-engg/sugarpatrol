@@ -65,11 +65,11 @@ public class GameScreen implements Screen {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             world.checkBugs((int)touchPoint.x, (int)touchPoint.y);
-            if (Settings.getFlashCount() > 0 && ScreenFunctions.inBounds(touchPoint, 133, 555, 38, 38))
+            if (Settings.getFlashCount() > 0 && Screens.inBounds(touchPoint, 133, 555, 38, 38))
                 world.setSelectedFlash(!world.isSelectedFlash());
-            else if(Settings.getFreezeCount() > 0 && ScreenFunctions.inBounds(touchPoint, 181, 555, 38, 38))
+            else if(Settings.getFreezeCount() > 0 && Screens.inBounds(touchPoint, 181, 555, 38, 38))
                 world.setSelectedFreeze(!world.isSelectedFreeze());
-            else if(Settings.getAntomCount() > 0 && ScreenFunctions.inBounds(touchPoint, 229, 555, 38, 38))
+            else if(Settings.getAntomCount() > 0 && Screens.inBounds(touchPoint, 229, 555, 38, 38))
                 world.setSelectedAntom(!world.isSelectedAntom());
             else if(world.isSelectedFlash()) {
                 Settings.setFlashCount(Settings.getFlashCount() - 1);
@@ -90,13 +90,13 @@ public class GameScreen implements Screen {
         }
     }
 
-    private void updatePaused(Vector3 touch) {
+    private void updatePaused() {
         if (assets.getBackgroundMusic().isPlaying())
             assets.getBackgroundMusic().stop();
 
         if(Gdx.input.justTouched()) {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-            if (ScreenFunctions.inBounds(touch, 10, 10, 350, 550)) {
+            if (Screens.inBounds(touchPoint, 10, 10, 350, 550)) {
                 assets.playSound(assets.getClick(), 1);
                 assets.playMusic(assets.getBackgroundMusic(), 1, true);
                 gameState = GameState.Running;
@@ -104,18 +104,18 @@ public class GameScreen implements Screen {
         }
     }
 
-    private void updateGameOver(Vector3 touch) {
+    private void updateGameOver() {
         if(assets.getBackgroundMusic().isPlaying())
             assets.getBackgroundMusic().stop();
 
         if(Gdx.input.justTouched()) {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
-            if (ScreenFunctions.inBounds(touch, 78, 201, 245, 50)) {
+            if (Screens.inBounds(touchPoint, 78, 201, 245, 50)) {
                 saveScores();
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new MainScreen(game));
             }
-            else if (ScreenFunctions.inBounds(touch, 78, 271, 245, 50)) {
+            else if (Screens.inBounds(touchPoint, 78, 271, 245, 50)) {
                 assets.playSound(assets.getClick(), 1);
                 if(Settings.checkHearts(heartRequired)) {
                     Settings.setHeartCount(Settings.getHeartCount() - heartRequired);
@@ -203,12 +203,12 @@ public class GameScreen implements Screen {
         if(world.isWorldFrozen())
             game.batch.draw(assets.getSnow(world.isSnowFlag()), 0, 0);
 
-        ScreenFunctions.drawNumbers(game, "" + score, 390 - ("" + score).length() * World.NUMBERS_WIDTH, 555, assets.getNumbers());
-        ScreenFunctions.drawNumbers(game, "" + coins, 47, 555, assets.getNumbers());
+        Screens.drawNumbers(game, "" + score, 390 - ("" + score).length() * World.NUMBERS_WIDTH, 555, assets.getNumbers());
+        Screens.drawNumbers(game, "" + coins, 47, 555, assets.getNumbers());
 
         if(gameState == GameState.GameOver) {
             game.batch.draw(assets.getGameover(), 0, 173);
-            ScreenFunctions.drawNumbers(game, "" + heartRequired, 256, 282, assets.getNumbersMedium());
+            Screens.drawNumbers(game, "" + heartRequired, 256, 282, assets.getNumbersMedium());
         }
 
         if(gameState == GameState.Paused) {
@@ -221,9 +221,9 @@ public class GameScreen implements Screen {
         if(gameState == GameState.Running)
             updateRunning(deltaTime);
         else if(gameState == GameState.Paused)
-            updatePaused(touchPoint);
+            updatePaused();
         else if(gameState == GameState.GameOver)
-            updateGameOver(touchPoint);
+            updateGameOver();
     }
 
     @Override

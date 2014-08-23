@@ -2,5 +2,11 @@
 <resources>
 
     <string name="app_name">Sugar Patrol</string>
+    <string name="back">Back</string>
+    <string name="blank"></string>
+    <string name="no_ads">No Ads</string>
+    <string name="coins_100">100 Coins</string>
+    <string name="coins_250">250 Coins</string>
+    <string name="coins_750">750 Coins</string>
 
 </resources>

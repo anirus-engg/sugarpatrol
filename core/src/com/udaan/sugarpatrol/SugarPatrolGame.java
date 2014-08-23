@@ -13,13 +13,12 @@ public class SugarPatrolGame extends Game {
         myRequestHandler = handler;
     }
 
+
     @Override
 	public void create () {
 		batch = new SpriteBatch();
 		Settings.load();
         setScreen(new SplashScreen(this));
-//        Assets.getInstance().load();
-//        setScreen(new MainScreen(this));
 	}
 
 	@Override

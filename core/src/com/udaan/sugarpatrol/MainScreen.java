@@ -29,12 +29,12 @@ public class MainScreen implements Screen {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             //touched anywhere except top bar
-            if(ScreenFunctions.inBounds(touchPoint, 0, 0, 400, 600 - 50)) {
+            if(Screens.inBounds(touchPoint, 0, 0, 400, 600 - 50)) {
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new GameScreen(game));
             }
             //touched menuButton
-            else if(ScreenFunctions.inBounds(touchPoint, 148, 600 - assets.getMenuButton().getRegionHeight(), assets.getMenuButton().getRegionWidth(), assets.getMenuButton().getRegionHeight())) {
+            else if(Screens.inBounds(touchPoint, 148, 600 - assets.getMenuButton().getRegionHeight(), assets.getMenuButton().getRegionWidth(), assets.getMenuButton().getRegionHeight())) {
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new MenuScreen(game));
             }

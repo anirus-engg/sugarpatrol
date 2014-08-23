@@ -28,32 +28,32 @@ public class SettingsScreen implements Screen {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             //touched playButton
-            if (ScreenFunctions.inBounds(touchPoint, 148, 600 - assets.getPlayButton().getRegionHeight(), assets.getPlayButton().getRegionWidth(), assets.getPlayButton().getRegionHeight())) {
+            if (Screens.inBounds(touchPoint, 148, 600 - assets.getPlayButton().getRegionHeight(), assets.getPlayButton().getRegionWidth(), assets.getPlayButton().getRegionHeight())) {
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new GameScreen(game));
             }
             //touched backButton
-            else if (ScreenFunctions.inBounds(touchPoint, 22, 600 - assets.getBackButton().getRegionHeight(), assets.getBackButton().getRegionWidth(), assets.getBackButton().getRegionHeight())) {
+            else if (Screens.inBounds(touchPoint, 22, 600 - assets.getBackButton().getRegionHeight(), assets.getBackButton().getRegionWidth(), assets.getBackButton().getRegionHeight())) {
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new MenuScreen(game));
             }
             //touched SoundCheckBox
-            else if(ScreenFunctions.inBounds(touchPoint, 227, 455, 27, 27)) {
+            else if(Screens.inBounds(touchPoint, 227, 455, 27, 27)) {
                 Settings.setSoundEnabled(!Settings.isSoundEnabled());
                 assets.playSound(assets.getClick(), 1);
             }
             //touched angelicOption
-            else if(ScreenFunctions.inBounds(touchPoint, 227, 370, 20, 20)) {
+            else if(Screens.inBounds(touchPoint, 227, 370, 20, 20)) {
                 assets.playSound(assets.getClick(), 1);
                 Settings.setSelectedLevel(Settings.ANGELIC);
             }
             //touched humaneOption
-            else if(ScreenFunctions.inBounds(touchPoint, 227, 345, 20, 20)) {
+            else if(Screens.inBounds(touchPoint, 227, 345, 20, 20)) {
                 assets.playSound(assets.getClick(), 1);
                 Settings.setSelectedLevel(Settings.HUMANE);
             }
             //touched demonicOption
-            else if(ScreenFunctions.inBounds(touchPoint, 227, 320, 20, 20)) {
+            else if(Screens.inBounds(touchPoint, 227, 320, 20, 20)) {
                 assets.playSound(assets.getClick(), 1);
                 Settings.setSelectedLevel(Settings.DEMONIC);
             }
@@ -72,11 +72,11 @@ public class SettingsScreen implements Screen {
         game.batch.draw(assets.getOption(Settings.getSelectedLevel() == Settings.ANGELIC), 227, 370, 20, 20);
         game.batch.draw(assets.getOption(Settings.getSelectedLevel() == Settings.HUMANE), 227, 345, 20, 20);
         game.batch.draw(assets.getOption(Settings.getSelectedLevel() == Settings.DEMONIC), 227, 320, 20, 20);
-        ScreenFunctions.drawNumbers(game, "" + highScores[0], 200, 203, assets.getNumbersMedium());
-        ScreenFunctions.drawNumbers(game, "" + highScores[1], 200, 176, assets.getNumbersMedium());
-        ScreenFunctions.drawNumbers(game, "" + highScores[2], 200, 150, assets.getNumbersMedium());
-        ScreenFunctions.drawNumbers(game, "" + highScores[3], 200, 123, assets.getNumbersMedium());
-        ScreenFunctions.drawNumbers(game, "" + highScores[4], 200, 95, assets.getNumbersMedium());
+        Screens.drawNumbers(game, "" + highScores[0], 200, 203, assets.getNumbersMedium());
+        Screens.drawNumbers(game, "" + highScores[1], 200, 176, assets.getNumbersMedium());
+        Screens.drawNumbers(game, "" + highScores[2], 200, 150, assets.getNumbersMedium());
+        Screens.drawNumbers(game, "" + highScores[3], 200, 123, assets.getNumbersMedium());
+        Screens.drawNumbers(game, "" + highScores[4], 200, 95, assets.getNumbersMedium());
         game.batch.draw(assets.getArsenal(), 0, 600 - assets.getArsenal().getHeight());
         game.batch.draw(assets.getPlayButton(), 148, 600 - assets.getPlayButton().getRegionHeight());
         game.batch.draw(assets.getBackButton(), 22, 600 - assets.getBackButton().getRegionHeight());

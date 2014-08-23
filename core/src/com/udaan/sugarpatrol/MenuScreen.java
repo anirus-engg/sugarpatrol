@@ -28,30 +28,30 @@ public class MenuScreen implements Screen {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             //touched playButton
-            if(ScreenFunctions.inBounds(touchPoint, 148, 600 - assets.getPlayButton().getRegionHeight(), assets.getPlayButton().getRegionWidth(), assets.getPlayButton().getRegionHeight())) {
+            if(Screens.inBounds(touchPoint, 148, 600 - assets.getPlayButton().getRegionHeight(), assets.getPlayButton().getRegionWidth(), assets.getPlayButton().getRegionHeight())) {
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new GameScreen(game));
             }
             //touched backButton
-            else if(ScreenFunctions.inBounds(touchPoint, 22, 600 - assets.getBackButton().getRegionHeight(), assets.getBackButton().getRegionWidth(), assets.getBackButton().getRegionHeight())) {
+            else if(Screens.inBounds(touchPoint, 22, 600 - assets.getBackButton().getRegionHeight(), assets.getBackButton().getRegionWidth(), assets.getBackButton().getRegionHeight())) {
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new MainScreen(game));
             }
 
             //touched shopButton
-            else if(ScreenFunctions.inBounds(touchPoint, 58, 348, 287, 60)) {
+            else if(Screens.inBounds(touchPoint, 58, 348, 287, 60)) {
                 assets.playSound(assets.getClick(), 1);
-                //TODO - shop screen
+                game.myRequestHandler.showShop();
             }
 
             //touched upgradesButton
-            else if(ScreenFunctions.inBounds(touchPoint, 58, 269, 287, 60)) {
+            else if(Screens.inBounds(touchPoint, 58, 269, 287, 60)) {
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new UpgradesPowerupScreen(game));
             }
 
             //touched SettingsButton
-            else if(ScreenFunctions.inBounds(touchPoint, 58, 190, 287, 60)) {
+            else if(Screens.inBounds(touchPoint, 58, 190, 287, 60)) {
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new SettingsScreen(game));
             }

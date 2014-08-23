@@ -22,4 +22,9 @@ public class HtmlLauncher extends GwtApplication implements IActivityRequestHand
     public void showAds(boolean show) {
 
     }
+
+    @Override
+    public void showShop() {
+
+    }
 }

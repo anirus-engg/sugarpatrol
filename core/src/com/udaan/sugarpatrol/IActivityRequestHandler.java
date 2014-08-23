@@ -5,4 +5,5 @@ package com.udaan.sugarpatrol;
  */
 public interface IActivityRequestHandler {
     public void showAds(boolean show);
+    public void showShop();
 }

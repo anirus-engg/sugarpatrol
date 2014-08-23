@@ -1,5 +1,6 @@
 package com.udaan.sugarpatrol.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -135,5 +136,11 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
     public void showAds(boolean show) {
 //        showOrLoadInterstitial();
         handler.sendEmptyMessage(show ? SHOW_ADS : HIDE_ADS);
+    }
+
+    @Override
+    public void showShop() {
+        Intent intent = new Intent(this, ShopActivity.class);
+        startActivity(intent);
     }
 }

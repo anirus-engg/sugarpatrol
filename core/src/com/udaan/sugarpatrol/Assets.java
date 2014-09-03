@@ -12,51 +12,53 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Assets {
     private static Assets instance;
 
-    private static Texture arsenal;
-    private static Texture backgroundWood1;
-    private static Texture backgroundWood2;
-    private static Texture backgroundConcrete;
-    private static Texture backgroundMarble;
-    private static Texture backgroundSteel;
-    private static Texture backgroundBrick;
-    private static Texture backgroundMask;
-    private static Texture logo;
-    private static TextureRegion backButton;
-    private static TextureRegion menuButton;
-    private static TextureRegion playButton;
-    private static Texture tapText;
-    private static TextureRegion sugar1;
-    private static TextureRegion sugar2;
-    private static TextureRegion sugar3;
-    private static Texture menu;
-    private static Texture menuUpgradesBackground;
-    private static Texture menuUpgradesPowerup;
-    private static Texture menuSettings;
-    private static Texture lines;
-    private static Texture blackAnts;
-    private static Texture bigBlackAnts;
-    private static Texture redAnts;
-    private static Texture numbers;
-    private static Texture numbersMedium;
-    private static Texture numbersSmall;
-    private static TextureRegion goldCoin;
-    private static TextureRegion flash;
-    private static TextureRegion freeze;
-    private static TextureRegion antom;
-    private static TextureRegion disabledFlash;
-    private static TextureRegion disabledFreeze;
-    private static TextureRegion disabledAntom;
-    private static TextureRegion snow1;
-    private static TextureRegion snow2;
-    private static Texture pause;
-    private static Texture gameover;
-    private static Texture selection;
-    private static Texture confirm;
-    private static Texture insufficient;
-    private static TextureRegion checked;
-    private static TextureRegion unchecked;
-    private static TextureRegion selected;
-    private static TextureRegion unselected;
+    private Texture arsenal;
+    private Texture backgroundWood1;
+    private Texture backgroundWood2;
+    private Texture backgroundConcrete;
+    private Texture backgroundMarble;
+    private Texture backgroundSteel;
+    private Texture backgroundBrick;
+    private Texture backgroundMask;
+    private Texture logo;
+    private TextureRegion backButton;
+    private TextureRegion menuButton;
+    private TextureRegion playButton;
+    private Texture tapText;
+    private TextureRegion sugar1;
+    private TextureRegion sugar2;
+    private TextureRegion sugar3;
+    private Texture menu;
+    private Texture menuUpgradesBackground;
+    private Texture menuUpgradesPowerup;
+    private Texture menuSettings;
+    private Texture lines;
+    private Texture blackAnts;
+    private Texture bigBlackAnts;
+    private Texture redAnts;
+    private Texture numbers;
+    private Texture numbersMedium;
+    private Texture numbersSmall;
+    private TextureRegion goldCoin;
+    private TextureRegion flash;
+    private TextureRegion freeze;
+    private TextureRegion antom;
+    private TextureRegion disabledFlash;
+    private TextureRegion disabledFreeze;
+    private TextureRegion disabledAntom;
+    private TextureRegion snow1;
+    private TextureRegion snow2;
+    private Texture flashed;
+    private Texture nuked;
+    private Texture pause;
+    private Texture gameover;
+    private Texture selection;
+    private Texture confirm;
+    private Texture insufficient;
+    private TextureRegion checked;
+    private TextureRegion unchecked;
+    private TextureRegion selected;
+    private TextureRegion unselected;
 
     private Music backgroundMusic;
     private Sound click;
@@ -116,6 +118,8 @@ public class Assets {
         Texture snow = loadTexture("images/snow.png");
         snow1 = new TextureRegion(snow, 0, 0, 400, 600);
         snow2 = new TextureRegion(snow, 400, 0, 400, 600);
+        flashed = loadTexture("images/flash.png");
+        nuked = loadTexture("images/nuclear3.png");
         pause = loadTexture("images/pause.png");
         gameover = loadTexture("images/gameover.png");
         selection = loadTexture("images/selection.png");
@@ -274,6 +278,14 @@ public class Assets {
 
     public TextureRegion getSnow(boolean flag) {
         return flag ? snow1 : snow2;
+    }
+
+    public Texture getFlashed() {
+        return flashed;
+    }
+
+    public Texture getNuked() {
+        return nuked;
     }
 
     public Texture getPause() {

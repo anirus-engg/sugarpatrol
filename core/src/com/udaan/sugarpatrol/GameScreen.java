@@ -140,28 +140,7 @@ public class GameScreen implements Screen {
 
         game.batch.begin();
         game.batch.draw(assets.getBackground(), 0, 0);
-        game.batch.draw(assets.getArsenal(), 0, 600 - assets.getArsenal().getHeight());
         game.batch.draw(assets.getLines(), 0, 0);
-        game.batch.draw(assets.getGoldCoin(), 5, 555);
-
-        if(Settings.getFlashCount() > 0 && !world.isSelectedFreeze() && !world.isSelectedAntom())
-            game.batch.draw(assets.getFlash(), 133, 555);
-        else
-            game.batch.draw(assets.getDisabledFlash(), 133, 555);
-
-        if(Settings.getFreezeCount() > 0 && !world.isSelectedFlash() && !world.isSelectedAntom())
-            game.batch.draw(assets.getFreeze(), 181, 555);
-        else
-            game.batch.draw(assets.getDisabledFreeze(), 181, 555);
-
-        if(Settings.getAntomCount() > 0 && !world.isSelectedFreeze() && !world.isSelectedFlash())
-            game.batch.draw(assets.getAntom(), 229, 555);
-        else
-            game.batch.draw(assets.getDisabledAntom(), 229, 555);
-
-        game.batch.draw(assets.getNumbersSmall(), 152, 550, Settings.getFlashCount() * 19, 0, 19, 19);
-        game.batch.draw(assets.getNumbersSmall(), 200, 550, Settings.getFreezeCount() * 19, 0, 19, 19);
-        game.batch.draw(assets.getNumbersSmall(), 248, 550, Settings.getAntomCount() * 19, 0, 19, 19);
 
         int len = blackAnts.size();
         for (int i = 0; i < len; i++) {
@@ -200,8 +179,34 @@ public class GameScreen implements Screen {
                 break;
         }
 
-        if(world.isWorldFrozen())
+        if(world.isShowFlashed())
+            game.batch.draw(assets.getFlashed(), 0, 0);
+        if(world.isShowFrozen())
             game.batch.draw(assets.getSnow(world.isSnowFlag()), 0, 0);
+        if(world.isShowNuked())
+            game.batch.draw(assets.getNuked(), 0, 0);
+
+        game.batch.draw(assets.getArsenal(), 0, 600 - assets.getArsenal().getHeight());
+        game.batch.draw(assets.getGoldCoin(), 5, 555);
+
+        if(Settings.getFlashCount() > 0 && !world.isSelectedFreeze() && !world.isSelectedAntom())
+            game.batch.draw(assets.getFlash(), 133, 555);
+        else
+            game.batch.draw(assets.getDisabledFlash(), 133, 555);
+
+        if(Settings.getFreezeCount() > 0 && !world.isSelectedFlash() && !world.isSelectedAntom())
+            game.batch.draw(assets.getFreeze(), 181, 555);
+        else
+            game.batch.draw(assets.getDisabledFreeze(), 181, 555);
+
+        if(Settings.getAntomCount() > 0 && !world.isSelectedFreeze() && !world.isSelectedFlash())
+            game.batch.draw(assets.getAntom(), 229, 555);
+        else
+            game.batch.draw(assets.getDisabledAntom(), 229, 555);
+
+        game.batch.draw(assets.getNumbersSmall(), 152, 550, Settings.getFlashCount() * 19, 0, 19, 19);
+        game.batch.draw(assets.getNumbersSmall(), 200, 550, Settings.getFreezeCount() * 19, 0, 19, 19);
+        game.batch.draw(assets.getNumbersSmall(), 248, 550, Settings.getAntomCount() * 19, 0, 19, 19);
 
         Screens.drawNumbers(game, "" + score, 390 - ("" + score).length() * World.NUMBERS_WIDTH, 555, assets.getNumbers());
         Screens.drawNumbers(game, "" + coins, 47, 555, assets.getNumbers());

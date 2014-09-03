@@ -17,14 +17,16 @@ public class World {
     private static final int NEW_BIG_BLACK_ANT_LOCATIONS = 10;
     private static final int NEW_RED_ANT_LOCATIONS = 12;
 
-    private static float NEW_BLACK_ANT_TIME;
-    private static float NEW_BIG_BLACK_ANT_TIME;
-    private static float NEW_RED_ANT_TIME;
-
     private static final float FLASH_TIME = 10.0f;
+    private static final float FLASH_SHOW_TIME = 0.1f;
     private static final float FREEZE_TIME = 10.0f;
     private static final float SNOW_TIME = 1.0f;
     private static final float NUKE_TIME = 0.5f;
+    private static final float NUKE_SHOW_TIME = 0.1f;
+
+    private static float NEW_BLACK_ANT_TIME;
+    private static float NEW_BIG_BLACK_ANT_TIME;
+    private static float NEW_RED_ANT_TIME;
 
     private List<BlackAnt> blackAnts = new ArrayList<BlackAnt>();
     private float newBlackAntTick = 0.0f;
@@ -42,6 +44,9 @@ public class World {
     private boolean selectedAntom = false;
     private float snowTick = 0.0f;
     private boolean snowFlag = true;
+    private boolean showFlashed = false;
+    private boolean showFrozen = false;
+    private boolean showNuked = false;
 
     private Random generator = new Random();
     private int sugarLeft = 3;
@@ -242,16 +247,28 @@ public class World {
         }
     }
 
-    public boolean isWorldFlashed() {
-        //TODO - show flash graphics
-        return (worldState == WorldState.Flashed);
+    public boolean isShowFlashed() {
+        return showFlashed;
     }
-    public boolean isWorldFrozen() {
-        return (worldState == WorldState.Frozen);
+
+    public void setShowFlashed(boolean showFlashed) {
+        this.showFlashed = showFlashed;
     }
-    public boolean isWorldNuked() {
-        //TODO - show atom bomb graphics
-        return (worldState == WorldState.Nuked);
+
+    public boolean isShowFrozen() {
+        return showFrozen;
+    }
+
+    public void setShowFrozen(boolean showFrozen) {
+        this.showFrozen = showFrozen;
+    }
+
+    public boolean isShowNuked() {
+        return showNuked;
+    }
+
+    public void setShowNuked(boolean showNuked) {
+        this.showNuked = showNuked;
     }
 
     public void setWorldState(WorldState state) {
@@ -315,11 +332,20 @@ public class World {
             synchronized (this) {
                 moveBugs(deltaTime);
             }
+
+            showFlashed = false;
+            showFrozen = false;
+            showNuked = false;
         }
         else if(worldState == WorldState.Flashed) {
             flashTick += deltaTime;
             newAnt(deltaTime);
             moveBugs(deltaTime / 2);
+
+            if(flashTick >= FLASH_SHOW_TIME)
+                showFlashed = false;
+            else
+                showFlashed = true;
 
             if(flashTick >= FLASH_TIME) {
                 flashTick = 0.0f;
@@ -329,18 +355,27 @@ public class World {
         else if(worldState == WorldState.Frozen) {
             freezeTick += deltaTime;
             snowTick += deltaTime;
+
             if(snowTick >= SNOW_TIME) {
                 snowTick = 0.0f;
                 snowFlag = !snowFlag;
             }
+
             if(freezeTick >= FREEZE_TIME) {
                 freezeTick = 0.0f;
                 worldState = WorldState.Normal;
             }
+            showFrozen = true;
         }
         else if(worldState == WorldState.Nuked) {
             nukeTick += deltaTime;
             killAll();
+
+            if(nukeTick >= NUKE_SHOW_TIME)
+                showNuked = false;
+            else
+                showNuked = true;
+
             if(nukeTick >= NUKE_TIME) {
                 nukeTick = 0.0f;
                 worldState = WorldState.Flashed;

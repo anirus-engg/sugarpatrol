@@ -171,6 +171,8 @@ public class ShopActivity extends Activity {
                     }
                 }.start();*/
 
+                if(mHelper != null) mHelper.flagEndAsync();
+
                 Log.d(TAG, "Purchase price is " + coins100Price);
                 mHelper.launchPurchaseFlow(ShopActivity.this, SKU_100_COINS, 5, mPurchaseFinishedListener, "coins100purchase");
             }
@@ -192,6 +194,8 @@ public class ShopActivity extends Activity {
                     }
                 }.start();*/
 
+                if(mHelper != null) mHelper.flagEndAsync();
+
                 Log.d(TAG, "Purchase price is " + coins250Price);
                 mHelper.launchPurchaseFlow(ShopActivity.this, SKU_250_COINS, 5, mPurchaseFinishedListener, "coins250purchase");
             }
@@ -212,6 +216,8 @@ public class ShopActivity extends Activity {
                         coins100.setImageResource(R.raw.btn_100_coins);
                     }
                 }.start();*/
+
+                if(mHelper != null) mHelper.flagEndAsync();
 
                 Log.d(TAG, "Purchase price is " + coins750Price);
                 mHelper.launchPurchaseFlow(ShopActivity.this, SKU_750_COINS, 5, mPurchaseFinishedListener, "coins750purchase");

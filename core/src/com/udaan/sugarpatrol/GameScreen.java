@@ -125,6 +125,9 @@ public class GameScreen implements Screen {
                     assets.playSound(assets.getClick(), 1);
                     assets.playMusic(assets.getBackgroundMusic(), 1, true);
                 }
+                else {
+                    game.myRequestHandler.showShop();
+                }
             }
         }
     }

@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.4'
-        classpath 'com.android.tools.build:gradle:0.10+'
+        classpath 'com.android.tools.build:gradle:0.12.2'
         classpath 'com.github.jtakakura:gradle-robovm-plugin:0.0.10'
     }
 }
@@ -18,7 +18,7 @@ allprojects {
     version = '1.0'
     ext {
         appName = 'Sugar Patrol'
-        gdxVersion = '1.2.0'
+        gdxVersion = '1.4.1'
         roboVMVersion = '0.0.14'
     }
 

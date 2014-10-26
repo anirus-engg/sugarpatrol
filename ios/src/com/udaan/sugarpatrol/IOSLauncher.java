@@ -32,8 +32,8 @@ public class IOSLauncher extends IOSApplication.Delegate implements IActivityReq
     }
 
     @Override
-    public void showShop() {
-
+    public boolean showShop() {
+        return false;
     }
 
     /**

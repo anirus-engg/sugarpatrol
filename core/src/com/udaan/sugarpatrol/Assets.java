@@ -59,6 +59,7 @@ public class Assets {
     private TextureRegion unchecked;
     private TextureRegion selected;
     private TextureRegion unselected;
+    private Texture comingSoon;
 
     private Music backgroundMusic;
     private Sound click;
@@ -131,6 +132,7 @@ public class Assets {
         Texture option = loadTexture("images/option.png");
         unselected = new TextureRegion(option, 0, 0, 27, 27);
         selected = new TextureRegion(option, 27, 0, 27, 27);
+        comingSoon = loadTexture("images/coming_soon.png");
 
         backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/march.wav"));
 
@@ -326,5 +328,9 @@ public class Assets {
 
     public TextureRegion getOption(boolean flag) {
         return flag ? selected : unselected;
+    }
+
+    public Texture getComingSoon() {
+        return comingSoon;
     }
 }

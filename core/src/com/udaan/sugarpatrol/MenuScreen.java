@@ -41,7 +41,9 @@ public class MenuScreen implements Screen {
             //touched shopButton
             else if(Screens.inBounds(touchPoint, 58, 348, 287, 60)) {
                 assets.playSound(assets.getClick(), 1);
-                game.myRequestHandler.showShop();
+                if(!game.myRequestHandler.showShop()) {
+                    game.setScreen(new ComingSoonScreen(game));
+                }
             }
 
             //touched upgradesButton

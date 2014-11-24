@@ -110,11 +110,13 @@ public class GameScreen implements Screen {
 
         if(Gdx.input.justTouched()) {
             camera.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
+            //clicked OK
             if (Screens.inBounds(touchPoint, 78, 201, 245, 50)) {
                 saveScores();
                 assets.playSound(assets.getClick(), 1);
                 game.setScreen(new MainScreen(game));
             }
+            //clicked Continue
             else if (Screens.inBounds(touchPoint, 78, 271, 245, 50)) {
                 assets.playSound(assets.getClick(), 1);
                 if(Settings.checkHearts(heartRequired)) {
